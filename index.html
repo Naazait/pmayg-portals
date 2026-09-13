@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <title>PMAY-G Monitoring Portal</title>
+  <link rel="icon" type="image/png" href="https://img.icons8.com/color/192/home-office.png">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    #error-box {
+      display: none;
+      text-align: center;
+      padding: 15% 20px 0 20px;
+      color: #ffffff;
+    }
+    #error-box h2 {
+      color: #ef4444;
+      margin-bottom: 12px;
+      font-size: 26px;
+    }
+    #error-box p {
+      color: #94a3b8;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 20px;
+      color: #38bdf8;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Apps Script App यहाँ लोड होगा -->
+  <iframe id="appFrame" src="" allow="geolocation; camera; microphone"></iframe>
+
+  <!-- गलत सबडोमेन या लिंक न होने पर एरर मैसेज -->
+  <div id="error-box">
+    <h2>404 - Block Portal Not Found</h2>
+    <p>यह सबडोमेन पंजीकृत नहीं है या इस ब्लॉक का लिंक अभी सेटअप नहीं किया गया है।</p>
+    <div id="subdomainInfo" class="badge"></div>
+  </div>
+
+  <script>
+    // सभी 27 ब्लॉक्स की लिस्ट और उनके Apps Script URLs
+    const blockApps = {
+      "adapur": {
+        "title": "PMAY-G Portal | Block Adapur",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_ADAPUR_SCRIPT_ID/exec"
+      },
+      "areraj": {
+        "title": "PMAY-G Portal | Block Areraj",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_ARERAJ_SCRIPT_ID/exec"
+      },
+      "banjariya": {
+        "title": "PMAY-G Portal | Block Banjariya",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_BANJARIYA_SCRIPT_ID/exec"
+      },
+      "bankatwa": {
+        "title": "PMAY-G Portal | Block Bankatwa",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_BANKATWA_SCRIPT_ID/exec"
+      },
+      "chakia": {
+        "title": "PMAY-G Portal | Block Chakia (Pipra)",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_CHAKIA_SCRIPT_ID/exec"
+      },
+      "chawradano": {
+        "title": "PMAY-G Portal | Block Chawradano",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_CHAWRADANO_SCRIPT_ID/exec"
+      },
+      "chiraiya": {
+        "title": "PMAY-G Portal | Block Chiraiya",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_CHIRAIYA_SCRIPT_ID/exec"
+      },
+      "dhaka": {
+        "title": "PMAY-G Portal | Block Dhaka",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_DHAKA_SCRIPT_ID/exec"
+      },
+      "ghorasahan": {
+        "title": "PMAY-G Portal | Block Ghorasahan",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_GHORASAHAN_SCRIPT_ID/exec"
+      },
+      "harsidhi": {
+        "title": "PMAY-G Portal | Block Harsidhi",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_HARSIDHI_SCRIPT_ID/exec"
+      },
+      "kalyanpur": {
+        "title": "PMAY-G Portal | Block Kalyanpur",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_KALYANPUR_SCRIPT_ID/exec"
+      },
+      "kesaria": {
+        "title": "PMAY-G Portal | Block Kesaria",
+        "url": "https://script.google.com/macros/s/AKfycbzYjY1NGZyBQBGRZcdA6YFW2JK1gkraUKrpbhRD-4F4YrlMcWz2rwvZYzpFMTJFuV-F/exec"
+      },
+      "kotwa": {
+        "title": "PMAY-G Portal | Block Kotwa",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_KOTWA_SCRIPT_ID/exec"
+      },
+      "madhuban": {
+        "title": "PMAY-G Portal | Block Madhuban",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_MADHUBAN_SCRIPT_ID/exec"
+      },
+      "mehsi": {
+        "title": "PMAY-G Portal | Block Mehsi",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_MEHSI_SCRIPT_ID/exec"
+      },
+      "motihari": {
+        "title": "PMAY-G Portal | Block Motihari",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_MOTIHARI_SCRIPT_ID/exec"
+      },
+      "paharpur": {
+        "title": "PMAY-G Portal | Block Paharpur",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_PAHARPUR_SCRIPT_ID/exec"
+      },
+      "pakridayal": {
+        "title": "PMAY-G Portal | Block Pakridayal",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_PAKRIDAYAL_SCRIPT_ID/exec"
+      },
+      "patahi": {
+        "title": "PMAY-G Portal | Block Patahi",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_PATAHI_SCRIPT_ID/exec"
+      },
+      "phenhara": {
+        "title": "PMAY-G Portal | Block Phenhara",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_PHENHARA_SCRIPT_ID/exec"
+      },
+      "piprakothi": {
+        "title": "PMAY-G Portal | Block Pipra Kothi",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_PIPRAKOTHI_SCRIPT_ID/exec"
+      },
+      "ramgarhwa": {
+        "title": "PMAY-G Portal | Block Ramgarhwa",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_RAMGARHWA_SCRIPT_ID/exec"
+      },
+      "raxaul": {
+        "title": "PMAY-G Portal | Block Raxaul",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_RAXAUL_SCRIPT_ID/exec"
+      },
+      "sangrampur": {
+        "title": "PMAY-G Portal | Block Sangrampur",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_SANGRAMPUR_SCRIPT_ID/exec"
+      },
+      "sugauli": {
+        "title": "PMAY-G Portal | Block Sugauli",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_SUGAULI_SCRIPT_ID/exec"
+      },
+      "tetariya": {
+        "title": "PMAY-G Portal | Block Tetariya",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_TETARIYA_SCRIPT_ID/exec"
+      },
+      "tetaria": {
+        "title": "PMAY-G Portal | Block Tetariya",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_TETARIYA_SCRIPT_ID/exec"
+      },
+      "turkaulia": {
+        "title": "PMAY-G Portal | Block Turkaulia",
+        "url": "https://script.google.com/macros/s/PASTE_YOUR_TURKAULIA_SCRIPT_ID/exec"
+      }
+    };
+
+    // सबडोमेन निकालना (जैसे 'kesaria.ropotechnologies.com' से 'kesaria')
+    const hostname = window.location.hostname.toLowerCase();
+    const rawSubdomain = hostname.split('.')[0];
+    const subdomain = rawSubdomain.replace(/[-_]/g, '');
+
+    const currentBlock = blockApps[subdomain] || blockApps[rawSubdomain];
+
+    if (currentBlock && currentBlock.url && !currentBlock.url.includes("PASTE_YOUR_")) {
+      document.title = currentBlock.title;
+      document.getElementById("appFrame").src = currentBlock.url;
+    } else {
+      document.getElementById("appFrame").style.display = "none";
+      const errorBox = document.getElementById("error-box");
+      const infoBadge = document.getElementById("subdomainInfo");
+      
+      infoBadge.textContent = "Requested Subdomain: " + (rawSubdomain || "None");
+      errorBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>
