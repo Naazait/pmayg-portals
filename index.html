@@ -4,11 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-  <title>PMAY-G Monitoring Portal</title>
-  <link rel="icon" type="image/png" href="https://img.icons8.com/color/192/home-office.png">
+
+  <!-- 1. Page Title & Description -->
+  <title id="pageTitle">PMAY-G Portal</title>
+  <meta id="pageDescription" name="description" content="PMAY-G Housing Scheme Monitoring & Compliance System">
+
+  <!-- 2. WhatsApp / Social Media Preview (OG Tags) -->
+  <meta id="ogTitle" property="og:title" content="PMAY-G Monitoring Portal">
+  <meta id="ogDescription" property="og:description" content="Rural Housing Scheme Monitoring & Compliance System">
+  <meta id="ogImage" property="og:image" content="/fevicon.png">
+
+  <!-- 3. Favicon (ब्राउज़र टैब का लोगो) -->
+  <link id="appFavicon" rel="icon" type="image/png" href="/fevicon.png">
+  <link rel="shortcut icon" type="image/png" href="/fevicon.png">
+  <link rel="apple-touch-icon" href="/fevicon.png">
 
   <style>
     * {
@@ -74,114 +83,142 @@
     const blockApps = {
       "adapur": {
         "title": "PMAY-G Portal | Block Adapur",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Adapur Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_ADAPUR_SCRIPT_ID/exec"
       },
       "areraj": {
         "title": "PMAY-G Portal | Block Areraj",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Areraj Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_ARERAJ_SCRIPT_ID/exec"
       },
       "banjariya": {
         "title": "PMAY-G Portal | Block Banjariya",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Banjariya Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_BANJARIYA_SCRIPT_ID/exec"
       },
       "bankatwa": {
         "title": "PMAY-G Portal | Block Bankatwa",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Bankatwa Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_BANKATWA_SCRIPT_ID/exec"
       },
       "chakia": {
         "title": "PMAY-G Portal | Block Chakia (Pipra)",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Chakia (Pipra) Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_CHAKIA_SCRIPT_ID/exec"
       },
       "chawradano": {
         "title": "PMAY-G Portal | Block Chawradano",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Chawradano Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_CHAWRADANO_SCRIPT_ID/exec"
       },
       "chiraiya": {
         "title": "PMAY-G Portal | Block Chiraiya",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Chiraiya Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_CHIRAIYA_SCRIPT_ID/exec"
       },
       "dhaka": {
         "title": "PMAY-G Portal | Block Dhaka",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Dhaka Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_DHAKA_SCRIPT_ID/exec"
       },
       "ghorasahan": {
         "title": "PMAY-G Portal | Block Ghorasahan",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Ghorasahan Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_GHORASAHAN_SCRIPT_ID/exec"
       },
       "harsidhi": {
         "title": "PMAY-G Portal | Block Harsidhi",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Harsidhi Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_HARSIDHI_SCRIPT_ID/exec"
       },
       "kalyanpur": {
         "title": "PMAY-G Portal | Block Kalyanpur",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Kalyanpur Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_KALYANPUR_SCRIPT_ID/exec"
       },
       "kesaria": {
         "title": "PMAY-G Portal | Block Kesaria",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Kesaria Block",
         "url": "https://script.google.com/macros/s/AKfycbzYjY1NGZyBQBGRZcdA6YFW2JK1gkraUKrpbhRD-4F4YrlMcWz2rwvZYzpFMTJFuV-F/exec"
       },
       "kotwa": {
         "title": "PMAY-G Portal | Block Kotwa",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Kotwa Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_KOTWA_SCRIPT_ID/exec"
       },
       "madhuban": {
         "title": "PMAY-G Portal | Block Madhuban",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Madhuban Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_MADHUBAN_SCRIPT_ID/exec"
       },
       "mehsi": {
         "title": "PMAY-G Portal | Block Mehsi",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Mehsi Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_MEHSI_SCRIPT_ID/exec"
       },
       "motihari": {
         "title": "PMAY-G Portal | Block Motihari",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Motihari Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_MOTIHARI_SCRIPT_ID/exec"
       },
       "paharpur": {
         "title": "PMAY-G Portal | Block Paharpur",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Paharpur Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_PAHARPUR_SCRIPT_ID/exec"
       },
       "pakridayal": {
         "title": "PMAY-G Portal | Block Pakridayal",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Pakridayal Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_PAKRIDAYAL_SCRIPT_ID/exec"
       },
       "patahi": {
         "title": "PMAY-G Portal | Block Patahi",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Patahi Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_PATAHI_SCRIPT_ID/exec"
       },
       "phenhara": {
         "title": "PMAY-G Portal | Block Phenhara",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Phenhara Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_PHENHARA_SCRIPT_ID/exec"
       },
       "piprakothi": {
         "title": "PMAY-G Portal | Block Pipra Kothi",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Pipra Kothi Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_PIPRAKOTHI_SCRIPT_ID/exec"
       },
       "ramgarhwa": {
         "title": "PMAY-G Portal | Block Ramgarhwa",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Ramgarhwa Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_RAMGARHWA_SCRIPT_ID/exec"
       },
       "raxaul": {
         "title": "PMAY-G Portal | Block Raxaul",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Raxaul Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_RAXAUL_SCRIPT_ID/exec"
       },
       "sangrampur": {
         "title": "PMAY-G Portal | Block Sangrampur",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Sangrampur Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_SANGRAMPUR_SCRIPT_ID/exec"
       },
       "sugauli": {
         "title": "PMAY-G Portal | Block Sugauli",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Sugauli Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_SUGAULI_SCRIPT_ID/exec"
       },
       "tetariya": {
         "title": "PMAY-G Portal | Block Tetariya",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Tetariya Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_TETARIYA_SCRIPT_ID/exec"
       },
       "tetaria": {
         "title": "PMAY-G Portal | Block Tetariya",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Tetariya Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_TETARIYA_SCRIPT_ID/exec"
       },
       "turkaulia": {
         "title": "PMAY-G Portal | Block Turkaulia",
+        "desc": "PMAY-G Rural Housing Inspection Portal for Turkaulia Block",
         "url": "https://script.google.com/macros/s/PASTE_YOUR_TURKAULIA_SCRIPT_ID/exec"
       }
     };
@@ -194,7 +231,31 @@
     const currentBlock = blockApps[subdomain] || blockApps[rawSubdomain];
 
     if (currentBlock && currentBlock.url && !currentBlock.url.includes("PASTE_YOUR_")) {
+      // 1. Page Title अपडेट करें
       document.title = currentBlock.title;
+
+      // 2. Description अपडेट करें
+      const descMeta = document.getElementById("pageDescription");
+      if (descMeta && currentBlock.desc) {
+        descMeta.setAttribute("content", currentBlock.desc);
+      }
+
+      // 3. Social Media & WhatsApp Tags अपडेट करें
+      const ogTitleMeta = document.getElementById("ogTitle");
+      if (ogTitleMeta) ogTitleMeta.setAttribute("content", currentBlock.title);
+
+      const ogDescMeta = document.getElementById("ogDescription");
+      if (ogDescMeta && currentBlock.desc) {
+        ogDescMeta.setAttribute("content", currentBlock.desc);
+      }
+
+      const ogImgMeta = document.getElementById("ogImage");
+      if (ogImgMeta) {
+        // पूरा डोमेन पाथ जोड़कर WhatsApp प्रीव्यू इमेज सेट करना
+        ogImgMeta.setAttribute("content", window.location.origin + "/fevicon.png");
+      }
+
+      // 4. iFrame लोड करें
       document.getElementById("appFrame").src = currentBlock.url;
     } else {
       document.getElementById("appFrame").style.display = "none";
